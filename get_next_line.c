@@ -6,7 +6,7 @@
 /*   By: sgury <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 13:26:19 by sgury             #+#    #+#             */
-/*   Updated: 2019/04/19 16:51:57 by sgury            ###   ########.fr       */
+/*   Updated: 2019/07/05 16:19:58 by sgury            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,11 @@ int			get_next_line(const int fd, char **line)
 	if (read_ret < 0)
 		return (-1);
 	if (read_ret == 0 && content[fd][0] == '\0')
+	{
+		if (content[fd])
+			free(content[fd]);
 		return (0);
+	}
 	line_len = ft_line_len(content[fd]);
 	return (ft_get_new_line(line, content, fd, line_len));
 }
